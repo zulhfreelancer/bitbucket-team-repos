@@ -1,0 +1,1 @@
+select * from repos order by project asc, updated_at desc;
