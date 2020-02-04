@@ -22,9 +22,12 @@ func main() {
 	dbName := "./bitbucket.sqlite3"
 	sevenDays, _ := time.ParseDuration("720h") // 7 days = 168 hours, 30 days = 720 hours
 
-	err := os.Remove(dbName)
-	if err != nil {
-		log.Fatalf("Error when deleting database: %v", err)
+	// delete previous DB (if exists)
+	if _, err := os.Stat(dbName); err == nil {
+		err := os.Remove(dbName)
+		if err != nil {
+			log.Fatalf("Error when deleting database: %v", err)
+		}
 	}
 
 	db, _ :=
